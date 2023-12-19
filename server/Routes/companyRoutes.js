@@ -49,6 +49,29 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/companytype/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const companies = await Company.find({ name: id });
+    if (!companies) {
+      return res.status(500).json({
+        status: "fail",
+        message: "Nepodařilo se načíst ze serveru",
+      });
+    }
+    return res.status(200).json({
+      status: "success",
+      counts: companies.length,
+      data: companies,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+      message: error.message,
+    });
+  }
+});
+
 router.get("/:id", async (req, res) => {
   try {
     const company = await Company.findById(req.params.id);
