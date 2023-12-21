@@ -9,7 +9,7 @@ export default function CompanyItem({ name }) {
         <Button
           sx={{ display: "flex", flexDirection: "column" }}
           component={Link}
-          to={`/company/type/${name}`}
+          to={`/companies/type/${name}`}
         >
           <Icon sx={{ height: "100%" }}>
             <FolderIcon />

@@ -18,7 +18,7 @@ export default function CompaniesList({ companies }) {
           alignItems={"center"}
           mb={2}
         >
-          <TextField label="filter" size="small" variant="standard" />
+          <TextField label="hledat firmu" size="small" variant="standard" />
         </Box>
         <Divider />
         <Grid container gap={2} m={2}>

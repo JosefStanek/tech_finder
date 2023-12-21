@@ -1,6 +1,5 @@
 import { Container } from "@mui/material";
-import Form from "../shared/Form";
-
+import Form from "../shared/form/Form";
 export default function CreateCompany() {
   return (
     <Container>

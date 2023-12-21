@@ -11,7 +11,7 @@ import Header from "./Header";
 import Drawer from "./Drawer";
 import MobileDrawer from "./Drawer";
 const links = [
-  { name: "společnosti", id: 1, href: "/", icon: <FolderIcon /> },
+  { name: "společnosti", id: 1, href: "/companies", icon: <FolderIcon /> },
   {
     name: "přidat",
     id: 2,
@@ -21,7 +21,7 @@ const links = [
   {
     name: "nastavení",
     id: 3,
-    href: "/company/new",
+    href: "/setting",
     icon: <SettingsApplicationsIcon />,
   },
 ];

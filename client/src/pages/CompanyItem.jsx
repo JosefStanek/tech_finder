@@ -4,11 +4,11 @@ import { getCompany } from "../http/http";
 import { Card, Container, Typography, Button, Stack, Box } from "@mui/material";
 import { Link } from "react-router-dom";
 export default function CompanyItem() {
-  const { id } = useParams();
+  const { companyId } = useParams();
 
   const { data, error, isPending } = useQuery({
-    queryKey: ["company", id],
-    queryFn: () => getCompany(id),
+    queryKey: ["company", companyId],
+    queryFn: () => getCompany(companyId),
   });
   return (
     <Container>
@@ -20,7 +20,7 @@ export default function CompanyItem() {
               <Button
                 variant="contained"
                 component={Link}
-                to={`/company/type/${data.name}`}
+                to={`/companies/type/${data.name}`}
               >
                 back
               </Button>

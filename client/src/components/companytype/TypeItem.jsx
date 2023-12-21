@@ -1,18 +1,19 @@
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import { Button, Icon, Typography, Grid } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 export default function TypeItem({ address, id }) {
+  const { id: companyId } = useParams();
   return (
-    <Grid item xs={3} sm={2} alignSelf={"start"}>
+    <Grid item xs={5} sm={3} md={4} alignSelf={"start"}>
       <Button
         sx={{ display: "flex", flexDirection: "column" }}
         component={Link}
-        to={`/company/${id}`}
+        to={`/companies/type/${companyId}/company/${id}`}
       >
         <Icon sx={{ height: "100%" }}>
           <InsertDriveFileIcon />
         </Icon>
-        <Typography variant="body2" color={"secondary"}>
+        <Typography variant="body2" color={"secondary"} fontSize={"11px"}>
           {address}
         </Typography>
       </Button>
