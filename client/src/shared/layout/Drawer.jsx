@@ -1,16 +1,26 @@
-import { Card, Stack, Button, Divider, Icon, Box, Paper } from "@mui/material";
-
+import {
+  Card,
+  Stack,
+  Button,
+  Divider,
+  Icon,
+  Box,
+  Avatar,
+  Typography,
+} from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../store/user/userSlice";
 import GridViewIcon from "@mui/icons-material/GridView";
+import Cookies from "js-cookie";
 import { NavLink } from "react-router-dom";
-const navLinkStyles = ({ isActive }) => {
-  return {
-    color: "#845EC2",
-    fontWeight: isActive ? "700" : "400",
-    textDecoration: isActive ? "underline" : "none",
-    letterSpacing: "1px",
+
+export default function Drawer({ links, socialLinks }) {
+  const dispatch = useDispatch();
+  const { useremail } = useSelector((state) => state.user);
+  const logoutHandler = () => {
+    Cookies.remove("jwt");
+    dispatch(logout());
   };
-};
-export default function MobileDrawer({ links, socialLinks }) {
   return (
     <Card
       elevation={3}
@@ -26,6 +36,18 @@ export default function MobileDrawer({ links, socialLinks }) {
           <GridViewIcon />
         </Icon>
       </Box>
+      <Stack
+        direction={"row"}
+        alignItems={"center"}
+        justifyContent={"center"}
+        gap={1}
+        mb={2}
+      >
+        <Avatar sx={{ width: 24, height: 24 }}></Avatar>
+        <Typography variant="body2" sx={{ color: "white" }}>
+          {useremail}
+        </Typography>
+      </Stack>
       <Divider
         sx={{
           background: "#845EC2",
@@ -118,6 +140,7 @@ export default function MobileDrawer({ links, socialLinks }) {
               color: "white",
             },
           }}
+          onClick={logoutHandler}
         >
           odhlásit
         </Button>

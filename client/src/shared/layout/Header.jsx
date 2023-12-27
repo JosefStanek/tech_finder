@@ -1,14 +1,16 @@
 import { Icon, Stack, Toolbar, Typography, Box, Switch } from "@mui/material";
+
 import MenuIcon from "@mui/icons-material/Menu";
 
-export default function Header({}) {
+export default function Header() {
   return (
     <Toolbar>
       <Box display={"flex"} flexDirection={"row"} alignItems={"center"} gap={4}>
-        <Stack>
-          <Typography variant="h6" color={"primary"}>
-            Tech. Finder
-          </Typography>
+        <Stack direction={"row"} gap={2}>
+          <img
+            src="./public/logo.png"
+            style={{ width: "50", height: "50px" }}
+          />
         </Stack>
         <Icon
           variant="contained"

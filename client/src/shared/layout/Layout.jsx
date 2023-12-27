@@ -9,7 +9,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import Header from "./Header";
 import Drawer from "./Drawer";
-import MobileDrawer from "./Drawer";
+
 const links = [
   { name: "společnosti", id: 1, href: "/companies", icon: <FolderIcon /> },
   {
