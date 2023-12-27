@@ -2,7 +2,9 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import companyRoute from "./Routes/companyRoutes.js";
+import authRoute from "./Routes/authRoutes.js";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 dotenv.config();
 const app = express();
 const port = process.env.EXPRESS_PORT;
@@ -13,12 +15,15 @@ app.use(
     origin: "http://localhost:5173",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type"],
+    credentials: true,
   })
 );
+app.use(cookieParser());
 app.get("/", (req, res, next) => {
   return res.end("Hello World");
 });
 app.use("/company", companyRoute);
+app.use("/auth", authRoute);
 mongoose
   .connect(mongoUri)
   .then(() => {
