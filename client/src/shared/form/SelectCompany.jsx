@@ -1,4 +1,3 @@
-// import React, { useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import {
   FormControl,
@@ -7,11 +6,8 @@ import {
   MenuItem,
   Typography,
 } from "@mui/material";
-const companyList = [
-  { id: 1, value: "datart" },
-  { id: 2, value: "bushman" },
-];
-const SelectCompany = () => {
+
+const SelectCompany = ({ list }) => {
   const {
     control,
     formState: { errors },
@@ -38,10 +34,10 @@ const SelectCompany = () => {
             id="select"
             variant="standard"
           >
-            {companyList.map((item) => {
+            {list.map((item) => {
               return (
-                <MenuItem key={item.id} value={item.value}>
-                  {item.value}
+                <MenuItem key={item._id} value={item.name}>
+                  {item.name.toUpperCase()}
                 </MenuItem>
               );
             })}

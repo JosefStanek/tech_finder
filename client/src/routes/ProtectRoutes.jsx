@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import Spinner from "../shared/Spinner";
 export default function ProtectRoutes() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
   const { data, isPending } = useQuery({
     queryKey: ["user"],
     queryFn: async () => {
@@ -24,13 +24,13 @@ export default function ProtectRoutes() {
           throw new Error("uživatel nebyl nalezen");
         }
         dispatch(login(res.data.useremail));
-        navigate("/");
         return res.data;
       } catch (error) {
         console.log(error.message);
       }
     },
   });
+
   const { isLogged } = useSelector((state) => state.user);
   return isLogged ? (
     <>

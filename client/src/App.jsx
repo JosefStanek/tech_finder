@@ -31,8 +31,8 @@ const App = () => {
         <Routes>
           {/* Public routes */}
           <Route path="/auth" element={<Auth />}></Route>
-          {/* Protect routes */}
 
+          {/* Protect routes */}
           <Route element={<ProtectRoutes />}>
             <Route path="/" element={<Navigate to="/companies" />}></Route>
 

@@ -1,30 +1,10 @@
 import express from "express";
 import { Company } from "../Schemas/companyModel.js";
+import { postCompany } from "../Controllers/companyController.js";
+import upload from "../Multer/multer.js";
 const router = express.Router();
 
-router.post("/", async (req, res) => {
-  try {
-    const { name, address, employeeCount } = req.body;
-    if (!name || !address || !employeeCount) {
-      return res.status(500).json({
-        status: "fail",
-        message: "Prosím vyplň všechna povinná pole",
-      });
-    }
-    const newCompany = {
-      name: name,
-      address: address,
-      employeeCount: employeeCount,
-    };
-    const company = await Company.create(newCompany);
-    return res.status(201).json(company);
-  } catch (error) {
-    return res.status(500).json({
-      status: "fail",
-      message: error.message,
-    });
-  }
-});
+router.post("/", upload.single("image"), postCompany);
 
 router.get("/", async (req, res) => {
   try {
@@ -52,7 +32,7 @@ router.get("/", async (req, res) => {
 router.get("/companytype/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const companies = await Company.find({ name: id });
+    const companies = await Company.find({ select: id });
     if (!companies) {
       return res.status(500).json({
         status: "fail",

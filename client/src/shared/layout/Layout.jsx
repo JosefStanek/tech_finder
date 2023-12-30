@@ -9,6 +9,8 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import Header from "./Header";
 import Drawer from "./Drawer";
+import MobileDrawer from "./MobileDrawer";
+import { useState } from "react";
 
 const links = [
   { name: "společnosti", id: 1, href: "/companies", icon: <FolderIcon /> },
@@ -45,6 +47,13 @@ const socialLinks = [
 ];
 
 export default function Layout({ children }) {
+  const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
+  const mobileDrawerHandler = () => {
+    setMobileDrawerOpen(!mobileDrawerOpen);
+  };
+  const closeMobileDrawer = () => {
+    setMobileDrawerOpen(false);
+  };
   return (
     <div
       style={{
@@ -53,9 +62,14 @@ export default function Layout({ children }) {
         height: "100vh",
       }}
     >
-      <Header />
+      <Header setMobileDrawer={mobileDrawerHandler} />
       <Stack flexDirection={"row"} m={2}>
         <Drawer links={links} socialLinks={socialLinks} />
+        <MobileDrawer
+          links={links}
+          mobileDrawerOpen={mobileDrawerOpen}
+          closeMobileDrawer={closeMobileDrawer}
+        />
         <Card
           elevation={3}
           sx={{

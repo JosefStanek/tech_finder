@@ -11,8 +11,6 @@ import {
 import EmailIcon from "@mui/icons-material/Email";
 import KeyIcon from "@mui/icons-material/Key";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { login } from "../../store/user/userSlice";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 export default function AuthForm() {
@@ -22,7 +20,6 @@ export default function AuthForm() {
     register,
     formState: { errors },
   } = useForm();
-  const dispatch = useDispatch();
 
   const loginHandler = async (data) => {
     const { email, password } = data;
@@ -38,9 +35,9 @@ export default function AuthForm() {
         }
       );
       if (!res.data) {
-        console.log("error");
+        throw new Error("Uživatel nebyl nalezen ");
       }
-      dispatch(login(res.data.useremail));
+
       navigate("/");
     } catch (error) {
       console.log(error.message);
@@ -87,7 +84,7 @@ export default function AuthForm() {
               alignItems={"center"}
               p={2}
             >
-              <img src="./public/logo.png" style={{ width: "150px" }} />
+              <img src="/logo.png" style={{ width: "150px" }} alt="logo" />
               <TextField
                 label="email"
                 {...register("email", {
@@ -151,7 +148,7 @@ export default function AuthForm() {
           <Grid item xs={5} sx={{ display: { xs: "none", md: "block" } }}>
             <Box>
               <img
-                src="./public/login-wallpaper.svg"
+                src="/login-wallpaper.svg"
                 alt="login"
                 style={{ maxWidth: "100%" }}
               />

@@ -1,15 +1,12 @@
-import {
-  Box,
-  Button,
-  Card,
-  Stack,
-  TextField,
-  TextareaAutosize,
-} from "@mui/material";
+import { Box, Button, Card, Stack, TextField } from "@mui/material";
 import { useForm, FormProvider } from "react-hook-form";
 import SelectCompany from "./SelectCompany";
 import FileInput from "./FileInput";
-export default function Form() {
+import { useSelector } from "react-redux";
+import { useMutation } from "@tanstack/react-query";
+import { postCompany } from "../../http/http";
+export default function Form({ list }) {
+  const { useremail } = useSelector((state) => state.user);
   const methods = useForm({
     defaultValues: {
       name: "",
@@ -22,18 +19,33 @@ export default function Form() {
     },
   });
   const { errors } = methods.formState;
+  const { isPending, mutate } = useMutation({
+    mutationFn: postCompany,
+    onSuccess: () => {
+      console.log("success");
+    },
+  });
+
   return (
     <FormProvider {...methods}>
       <Box
         component={"form"}
-        onSubmit={methods.handleSubmit((data) => console.log(data))}
+        encType="multipart/form-data"
+        onSubmit={methods.handleSubmit((data) => {
+          data.creator = useremail;
+          const { image, ...rest } = data;
+          const formData = new FormData();
+          formData.append("image", image);
+          formData.append("data", JSON.stringify(rest));
+          mutate(formData);
+        })}
         display={"flex"}
         justifyContent={"center"}
         alignItems={"center"}
       >
         <Card sx={{ maxWidth: "500px", p: "2rem" }} elevation={10}>
           <Stack spacing={3}>
-            <SelectCompany />
+            <SelectCompany list={list} />
             <TextField
               label="název"
               {...methods.register("name", {
@@ -74,7 +86,7 @@ export default function Form() {
             />
             <FileInput />
             <Button type="submit" variant="contained">
-              přidat
+              {isPending ? "odesílám" : "přidat"}
             </Button>
           </Stack>
         </Card>

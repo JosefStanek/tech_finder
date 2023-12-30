@@ -9,6 +9,7 @@ export default function Companies() {
     queryKey: ["companies"],
     queryFn: getCompanies,
   });
+
   return (
     <>
       <Typography

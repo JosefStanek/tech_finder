@@ -1,84 +1,77 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+import { Drawer, Stack, Button, Box, Icon } from "@mui/material";
+import GridViewIcon from "@mui/icons-material/GridView";
 
-export default function MobileDrawer() {
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
-
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-
-    setState({ ...state, [anchor]: open });
+import { NavLink } from "react-router-dom";
+import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
+import { logout } from "../../store/user/userSlice";
+export default function MobileDrawer({
+  links,
+  mobileDrawerOpen,
+  closeMobileDrawer,
+}) {
+  const dispatch = useDispatch();
+  const logoutHandler = () => {
+    Cookies.remove("jwt");
+    dispatch(logout());
   };
-
-  const list = (anchor) => (
-    <Box
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
-
   return (
-    <div>
-      {["left", "right", "top", "bottom"].map((anchor) => (
-        <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-          <Drawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-          >
-            {list(anchor)}
-          </Drawer>
-        </React.Fragment>
-      ))}
-    </div>
+    <>
+      <Drawer
+        open={mobileDrawerOpen}
+        onClose={closeMobileDrawer}
+        anchor="top"
+        sx={{ display: { md: "none" } }}
+      >
+        <Box textAlign={"center"} m={2}>
+          <Icon sx={{ color: "#845EC2" }}>
+            <GridViewIcon />
+          </Icon>
+        </Box>
+        <Stack p={1} m={1} spacing={2}>
+          {links.map((link) => {
+            return (
+              <Button
+                key={link.id}
+                component={NavLink}
+                startIcon={link.icon}
+                variant="contained"
+                to={link.href}
+                size="medium"
+                onClick={closeMobileDrawer}
+                sx={{
+                  borderRadius: 0,
+                  display: "flex",
+                  justifyContent: "left",
+                  alignItems: "center",
+                  color: "white",
+                  ":hover": {
+                    bgcolor: "#4B4453",
+                    color: "white",
+                  },
+                  "&.active": {
+                    bgcolor: "#4B4453",
+                    color: "white",
+                  },
+                }}
+                fullWidth
+              >
+                {link.name}
+              </Button>
+            );
+          })}
+        </Stack>
+        <Box
+          my={4}
+          display={"flex"}
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
+          <Button variant="contained" onClick={logoutHandler}>
+            odhlásit
+          </Button>
+        </Box>
+      </Drawer>
+    </>
   );
 }

@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import companyRoute from "./Routes/companyRoutes.js";
 import authRoute from "./Routes/authRoutes.js";
+import listRoute from "./Routes/listRoutes.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 dotenv.config();
@@ -24,6 +25,8 @@ app.get("/", (req, res, next) => {
 });
 app.use("/company", companyRoute);
 app.use("/auth", authRoute);
+app.use("/list", listRoute);
+app.use(express.static("Images"));
 mongoose
   .connect(mongoUri)
   .then(() => {

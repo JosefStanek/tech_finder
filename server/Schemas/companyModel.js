@@ -3,17 +3,38 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 const companySchema = new Schema(
   {
+    creator: {
+      type: String,
+      required: true,
+    },
+    image: {
+      destination: {
+        type: String,
+      },
+      filename: {
+        type: String,
+      },
+    },
     name: {
       type: String,
       required: true,
     },
-    address: {
+    note: {
+      type: String,
+    },
+    orientationNumber: {
+      type: String,
+    },
+    select: {
       type: String,
       required: true,
     },
-    employeeCount: {
-      type: Number,
+    street: {
+      type: String,
       required: true,
+    },
+    zipCode: {
+      type: String,
     },
   },
   { timestamps: true }
