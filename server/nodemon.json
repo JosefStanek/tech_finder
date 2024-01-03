@@ -1,9 +1,0 @@
-// {
-//   "env": {
-//     "DB_USER": "admin",
-//     "DB_PASSWORD": "admin123456",
-//     "DB_NAME": "techFinder"
-//   }
-// }
-
-{ "env": {} }
