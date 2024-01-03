@@ -1,15 +1,15 @@
 import express from "express";
-// import dotenv from "dotenv";
+import dotenv from "dotenv";
 import mongoose from "mongoose";
 import companyRoute from "./Routes/companyRoutes.js";
 import authRoute from "./Routes/authRoutes.js";
 import listRoute from "./Routes/listRoutes.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-// dotenv.config();
+dotenv.config();
 const app = express();
-// const port = process.env.EXPRESS_PORT;
-// const mongoUri = process.env.MONGO_URI;
+const port = process.env.EXPRESS_PORT;
+const mongoUri = process.env.MONGO_URI;
 app.use(express.json());
 // app.use(
 //   cors({
@@ -19,9 +19,7 @@ app.use(express.json());
 //     credentials: true,
 //   })
 // )
-const port = 3000;
-const mongoUri =
-  "mongodb+srv://admin:admin123456@cluster0.yoogpuo.mongodb.net/techFinder?retryWrites=true&w=majority";
+
 app.use(cors());
 app.use(cookieParser());
 app.get("/", (req, res, next) => {

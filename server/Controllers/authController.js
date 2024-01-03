@@ -1,10 +1,9 @@
 import { User } from "../Schemas/userModel.js";
 import jwt from "jsonwebtoken";
-// import dotenv from "dotenv";
+import dotenv from "dotenv";
 
-// dotenv.config();
-// const secretKey = process.env.SECRET_KEY;
-const secretKey = "supersecretkeyWithString";
+dotenv.config();
+const secretKey = process.env.SECRET_KEY;
 const maxAge = 3 * 24 * 60 * 60;
 
 const createToken = (id) => {
