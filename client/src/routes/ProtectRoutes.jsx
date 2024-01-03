@@ -21,7 +21,7 @@ export default function ProtectRoutes() {
           token,
         });
         if (!res) {
-          throw new Error("uživatel nebyl nalezen");
+          throw Error("uživatel nebyl nalezen");
         }
         dispatch(login(res.data.useremail));
         return res.data;

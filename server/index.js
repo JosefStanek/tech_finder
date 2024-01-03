@@ -9,7 +9,6 @@ import cookieParser from "cookie-parser";
 dotenv.config();
 const app = express();
 const port = process.env.EXPRESS_PORT;
-const mongoUri = process.env.MONGO_URI;
 app.use(express.json());
 app.use(
   cors({
@@ -28,7 +27,9 @@ app.use("/auth", authRoute);
 app.use("/list", listRoute);
 app.use(express.static("Images"));
 mongoose
-  .connect(mongoUri)
+  .connect(
+    `mongodb+srv://admin:admin123456@cluster0.yoogpuo.mongodb.net/techFinder?retryWrites=true&w=majority`
+  )
   .then(() => {
     app.listen(port, () => {
       console.log(`server running on port ${port}`);

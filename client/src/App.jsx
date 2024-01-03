@@ -9,6 +9,7 @@ import CompanyType from "./pages/CompanyType";
 import Setting from "./pages/Setting";
 import Auth from "./pages/Auth";
 import ProtectRoutes from "./routes/ProtectRoutes";
+import { ToastContainer } from "react-toastify";
 
 const theme = createTheme({
   palette: {
@@ -49,6 +50,7 @@ const App = () => {
           </Route>
         </Routes>
       </BrowserRouter>
+      <ToastContainer />
     </ThemeProvider>
   );
 };

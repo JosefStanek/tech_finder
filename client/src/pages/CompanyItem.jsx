@@ -43,14 +43,20 @@ export default function CompanyItem() {
 
           <Card sx={{ mt: 3 }} elevation={0}>
             <Box display={"flex"} justifyContent={"center"}>
-              <img
-                src={`http://localhost:3000/${data.image.filename}`}
-                alt="company image"
-                style={{
-                  mawWidth: "100%",
-                  maxHeight: 180,
-                }}
-              />
+              {data.image.filename && (
+                <img
+                  src={`http://localhost:3000/${data.image.filename}`}
+                  alt="company image"
+                  style={{
+                    mawWidth: "100%",
+                    maxHeight: 180,
+                  }}
+                />
+              )}
+
+              {!data.image.filename && (
+                <Typography>obrázek není k dispozici</Typography>
+              )}
             </Box>
 
             <CardContent>

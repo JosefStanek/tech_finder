@@ -5,7 +5,10 @@ import FileInput from "./FileInput";
 import { useSelector } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
 import { postCompany } from "../../http/http";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 export default function Form({ list }) {
+  const navigate = useNavigate();
   const { useremail } = useSelector((state) => state.user);
   const methods = useForm({
     defaultValues: {
@@ -22,7 +25,8 @@ export default function Form({ list }) {
   const { isPending, mutate } = useMutation({
     mutationFn: postCompany,
     onSuccess: () => {
-      console.log("success");
+      toast.success("Uložení proběhlo v pořádku");
+      navigate("/");
     },
   });
 

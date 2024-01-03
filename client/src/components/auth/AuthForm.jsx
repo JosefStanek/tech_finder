@@ -12,6 +12,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import KeyIcon from "@mui/icons-material/Key";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 import axios from "axios";
 export default function AuthForm() {
   const navigate = useNavigate();
@@ -35,9 +36,8 @@ export default function AuthForm() {
         }
       );
       if (!res.data) {
-        throw new Error("Uživatel nebyl nalezen ");
+        throw Error("Uživatel nebyl nalezen ");
       }
-
       navigate("/");
     } catch (error) {
       console.log(error.message);
