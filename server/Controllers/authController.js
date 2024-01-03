@@ -1,10 +1,13 @@
 import { User } from "../Schemas/userModel.js";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 
+dotenv.config();
+const secretKey = process.env.SECRET_KEY;
 const maxAge = 3 * 24 * 60 * 60;
 
 const createToken = (id) => {
-  return jwt.sign({ id }, "supersecretkeyWithString", {
+  return jwt.sign({ id }, secretKey, {
     expiresIn: maxAge,
   });
 };
@@ -64,7 +67,7 @@ export const loginController = async (req, res, next) => {
 export const getmeController = async (req, res, next) => {
   try {
     const { token } = req.body;
-    const { id } = jwt.verify(token, "supersecretkeyWithString");
+    const { id } = jwt.verify(token, secretKey);
     const user = await User.findById(id);
     if (!user) {
       res.status(404).json({
