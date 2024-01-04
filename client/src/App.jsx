@@ -43,7 +43,7 @@ const App = () => {
               path="/companies/type/:id/company/:companyId"
               element={<CompanyItem />}
             ></Route>
-            <Route path="/company/edit/:id" element={<EditCompany />}></Route>
+            <Route path="/companies/edit/:id" element={<EditCompany />}></Route>
             <Route path="/company/new" element={<CreateCompany />}></Route>
             <Route path="/setting" element={<Setting />}></Route>
             <Route path="*" element={<Spinner />}></Route>

@@ -1,16 +1,28 @@
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
+import { getCompany } from "../http/http";
+import { Test } from "../components/companyItem/Test";
+import Form from "../shared/form/Form";
 export default function EditCompany() {
   const companyId = useParams().id;
-  // const { data, isPending, error } = useQuery({
-  //   queryKey: "",
-  //   queryFn: () => getCompany(companyId),
-  // });
+  const { data } = useQuery({
+    queryKey: ["company", companyId],
+    queryFn: () => getCompany(companyId),
+  });
   return (
     <Container>
-      <p>{companyId}</p>
-      <p>edit</p>
+      <Typography
+        variant="h6"
+        color={"primary"}
+        fontWeight={"bold"}
+        textAlign={"center"}
+        textTransform={"uppercase"}
+      >
+        Upravit společnost
+      </Typography>
+      <Test data={data} />
+      {/* <Form /> */}
     </Container>
   );
 }

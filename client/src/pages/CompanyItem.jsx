@@ -14,6 +14,7 @@ export default function CompanyItem() {
   return (
     <Container>
       {isPending && <Spinner />}
+
       {data && <Item data={data} />}
       {error && (
         <Typography variant="h6" textAlign={"center"}>

@@ -86,7 +86,7 @@ export const Item = ({ data }) => {
           <Button
             component={Link}
             variant="outlined"
-            to={`/company/edit/${companyId}`}
+            to={`/companies/edit/${companyId}`}
           >
             upravit
           </Button>

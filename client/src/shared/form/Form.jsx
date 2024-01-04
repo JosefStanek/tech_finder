@@ -33,8 +33,9 @@ export default function Form({ list }) {
     },
     onError: (error) => {
       toast.error(
-        `Něco se pokazilo, opakujte prosím akci později. ${error.message}`
+        `Něco se pokazilo, opakujte prosím akci později.${error.message}`
       );
+      navigate("/");
     },
   });
 
