@@ -7,7 +7,6 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 import { login } from "../store/user/userSlice";
-import { useNavigate } from "react-router-dom";
 import Spinner from "../shared/Spinner";
 export default function ProtectRoutes() {
   const dispatch = useDispatch();

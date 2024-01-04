@@ -12,9 +12,13 @@ import EmailIcon from "@mui/icons-material/Email";
 import KeyIcon from "@mui/icons-material/Key";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { login } from "../../store/user/userSlice";
+
 export default function AuthForm() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
     handleSubmit,
@@ -35,12 +39,17 @@ export default function AuthForm() {
           withCredentials: true,
         }
       );
+
       if (!res.data) {
         throw Error("Uživatel nebyl nalezen ");
       }
-      navigate("/");
+
+      dispatch(login(res.data.useremail));
+      toast.success("Přihlášení bylo úspešné");
+      navigate("/companies");
     } catch (error) {
-      console.log(error.message);
+      const message = error.response.data.message;
+      toast.error(message);
     }
   };
   return (

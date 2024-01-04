@@ -76,9 +76,14 @@ export const postCompany = async (formData) => {
       formData,
       config
     );
+    console.log(res);
+    if (!res.data) {
+      throw Error("data nejsou");
+    }
+
     return res.data;
   } catch (error) {
-    console.log(error.message);
+    throw Error(error.message);
   }
 };
 

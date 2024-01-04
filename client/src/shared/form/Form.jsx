@@ -7,6 +7,7 @@ import { useMutation } from "@tanstack/react-query";
 import { postCompany } from "../../http/http";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
 export default function Form({ list }) {
   const navigate = useNavigate();
   const { useremail } = useSelector((state) => state.user);
@@ -22,11 +23,18 @@ export default function Form({ list }) {
     },
   });
   const { errors } = methods.formState;
+  const queryClient = useQueryClient();
   const { isPending, mutate } = useMutation({
     mutationFn: postCompany,
     onSuccess: () => {
+      queryClient.setQueryData("companies");
       toast.success("Uložení proběhlo v pořádku");
       navigate("/");
+    },
+    onError: (error) => {
+      toast.error(
+        `Něco se pokazilo, opakujte prosím akci později. ${error.message}`
+      );
     },
   });
 

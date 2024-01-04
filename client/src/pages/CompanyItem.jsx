@@ -14,6 +14,8 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Skeleton,
+  Divider,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -55,7 +57,11 @@ export default function CompanyItem() {
               )}
 
               {!data.image.filename && (
-                <Typography>obrázek není k dispozici</Typography>
+                <>
+                  <Typography variant="body2" textTransform={"uppercase"}>
+                    obrázek není k dispozici
+                  </Typography>
+                </>
               )}
             </Box>
 
