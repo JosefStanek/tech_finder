@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Container, Grid, Box, TextField, Divider } from "@mui/material";
+import {
+  Container,
+  Grid,
+  Box,
+  TextField,
+  Divider,
+  Typography,
+} from "@mui/material";
 import Folder from "./Folder";
 
 export default function CompaniesList({ companies }) {
@@ -39,11 +46,19 @@ export default function CompaniesList({ companies }) {
         </Box>
         <Divider />
 
-        <Grid container gap={2} m={2}>
-          {filterCompanies.map((company, index) => {
-            return <Folder key={index} name={company} />;
-          })}
-        </Grid>
+        {companies && companies.length > 0 && (
+          <Grid container p={2}>
+            {filterCompanies.map((company, index) => {
+              return <Folder key={index} name={company} />;
+            })}
+          </Grid>
+        )}
+
+        {companies.length === 0 && (
+          <Typography variant="h6" textAlign={"center"} mt={2}>
+            Seznam je prázdný
+          </Typography>
+        )}
       </Container>
     </>
   );

@@ -4,7 +4,7 @@ import FolderIcon from "@mui/icons-material/Folder";
 import { Link } from "react-router-dom";
 export default function CompanyItem({ name }) {
   return (
-    <Grid item xs={3} sm={2}>
+    <Grid item xs={6} sm={3}>
       <Tooltip title={name}>
         <Button
           sx={{ display: "flex", flexDirection: "column" }}

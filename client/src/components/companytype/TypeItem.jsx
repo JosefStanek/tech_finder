@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 export default function TypeItem({ name, id }) {
   const { id: companyId } = useParams();
   return (
-    <Grid item xs={5} sm={3} md={4} alignSelf={"start"}>
+    <Grid item xs={6} sm={4} md={3}>
       <Button
         sx={{ display: "flex", flexDirection: "column" }}
         component={Link}
