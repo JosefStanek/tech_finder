@@ -1,4 +1,4 @@
-import { Grid, Stack } from "@mui/material";
+import { Grid } from "@mui/material";
 import TypeItem from "./TypeItem";
 export default function TypeListItems({ typeCompanies }) {
   console.log(typeCompanies);
