@@ -4,7 +4,10 @@ import axios from "axios";
 // get company
 export const getCompanies = async () => {
   try {
-    const res = await axios.get("http://localhost:3000/company");
+    // const res = await axios.get("http://localhost:3000/company");
+    const res = await axios.get(
+      "httpš://tech-finder-backend.vercel.app/company"
+    );
 
     if (!res) {
       throw new Error("Nepodařilo se načíst");
