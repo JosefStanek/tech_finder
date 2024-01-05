@@ -20,6 +20,9 @@ export default function ProtectRoutes() {
           "https://mern-tech-finder-backend.onrender.com/auth/getme",
           {
             token,
+          },
+          {
+            withCredentials: true,
           }
         );
         if (!res) {
