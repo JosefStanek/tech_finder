@@ -13,7 +13,7 @@ const mongoUri = process.env.MONGO_URI;
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: ["https://mern-tech-finder-frontend.onrender.com"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type"],
     credentials: true,
