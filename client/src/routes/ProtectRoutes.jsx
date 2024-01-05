@@ -15,7 +15,7 @@ export default function ProtectRoutes() {
     queryKey: ["user"],
     queryFn: async () => {
       try {
-        const token = Cookies.get("jwt");
+        const token = localStorage.getItem("token");
         const res = await axios.post(
           "https://mern-tech-finder-backend.onrender.com/auth/getme",
           {
