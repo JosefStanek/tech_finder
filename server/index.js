@@ -11,15 +11,16 @@ const app = express();
 const port = process.env.EXPRESS_PORT;
 const mongoUri = process.env.MONGO_URI;
 app.use(express.json());
-app.use(
-  cors({
-    origin: ["http://localhost:5173", "https://mern-test-app.ordered.com"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type"],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: ["http://localhost:5173", "https://mern-test-app.ordered.com"],
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     allowedHeaders: ["Content-Type"],
+//     credentials: true,
+//   })
+// );
 
+app.use(cors({}));
 app.use(cookieParser());
 app.get("/", (req, res, next) => {
   return res.end("Hello World");
