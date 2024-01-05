@@ -6,7 +6,7 @@ export const getCompanies = async () => {
   try {
     // const res = await axios.get("http://localhost:3000/company");
     const res = await axios.get(
-      "httpš://tech-finder-backend.vercel.app/company"
+      "https://tech-finder-backend.vercel.app/company"
     );
 
     if (!res) {
@@ -23,7 +23,7 @@ export const getCompanies = async () => {
 export const getTypeCompanies = async (id) => {
   try {
     const res = await axios.get(
-      `http://localhost:3000/company/companytype/${id}`
+      `https://tech-finder-backend.vercel.app/company/companytype/${id}`
     );
 
     if (!res) {
@@ -38,7 +38,9 @@ export const getTypeCompanies = async (id) => {
 // get company/type/id
 export const getCompany = async (id) => {
   try {
-    const res = await axios.get(`http://localhost:3000/company/${id}`);
+    const res = await axios.get(
+      `https://tech-finder-backend.vercel.app/company/${id}`
+    );
 
     if (!res) {
       throw new Error("Nepodařilo se načíst");
@@ -56,7 +58,7 @@ export const postCompany = async (formData) => {
   const config = { headers: { "Content-Type": "multipart/form-data" } };
   try {
     const res = await axios.post(
-      "http://localhost:3000/company",
+      "https://tech-finder-backend.vercel.app/company",
       formData,
       config
     );
@@ -76,7 +78,7 @@ export const postCompany = async (formData) => {
 // get list
 export const getList = async () => {
   try {
-    const res = await axios.get("http://localhost:3000/list");
+    const res = await axios.get("https://tech-finder-backend.vercel.app/list");
     return res.data.list;
   } catch (error) {
     console.log(error);
