@@ -35,7 +35,7 @@ export const Item = ({ data }) => {
         <Box display={"flex"} justifyContent={"center"}>
           {data.image.filename && (
             <img
-              src={`http://localhost:3000/${data.image.filename}`}
+              src={`https://mern-tech-finder-backend.onrender.com/${data.image.filename}`}
               alt="company image"
               style={{
                 mawWidth: "100%",
