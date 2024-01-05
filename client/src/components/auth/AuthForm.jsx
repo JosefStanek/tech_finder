@@ -30,7 +30,7 @@ export default function AuthForm() {
     const { email, password } = data;
     try {
       const res = await axios.post(
-        "https://tech-finder-backend.vercel.app/auth/login",
+        "http://localhost:3000/auth/login",
         {
           email,
           password,
