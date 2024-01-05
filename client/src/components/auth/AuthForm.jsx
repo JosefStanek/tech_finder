@@ -30,7 +30,7 @@ export default function AuthForm() {
     const { email, password } = data;
     try {
       const res = await axios.post(
-        "http://localhost:3000/auth/login",
+        "https://mern-tech-finder-backend.onrender.com/auth/login",
         {
           email,
           password,
