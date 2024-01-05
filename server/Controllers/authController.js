@@ -41,12 +41,8 @@ export const loginController = async (req, res, next) => {
     const token = createToken(user._id);
     return res
       .status(201)
-      .cookie("jwt", token, {
-        withCrdentials: true,
-        httpOnly: false,
-        maxAge: maxAge * 1000,
-      })
       .json({
+        token: token,
         user: user._id,
         useremail: user.email,
         created: true,
