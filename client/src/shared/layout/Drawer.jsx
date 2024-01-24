@@ -18,7 +18,7 @@ export default function Drawer({ links, socialLinks }) {
   const dispatch = useDispatch();
   const { useremail } = useSelector((state) => state.user);
   const logoutHandler = () => {
-    Cookies.remove("jwt");
+    localStorage.removeItem("token");
     dispatch(logout());
   };
   return (

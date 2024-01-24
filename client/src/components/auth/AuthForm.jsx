@@ -39,7 +39,7 @@ export default function AuthForm() {
           withCredentials: true,
         }
       );
-
+      localStorage.setItem("token", res.data.token);
       if (!res.data) {
         throw Error("Uživatel nebyl nalezen ");
       }

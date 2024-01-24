@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import Layout from "../shared/layout/Layout";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 import { login } from "../store/user/userSlice";
 import Spinner from "../shared/Spinner";
@@ -15,9 +14,9 @@ export default function ProtectRoutes() {
     queryKey: ["user"],
     queryFn: async () => {
       try {
-        const token = Cookies.get("jwt");
+        const token = localStorage.getItem("token");
         const res = await axios.post(
-          "https://mern-tech-finder-backend.onrender.com/auth/getme",
+          "http://localhost:3000/auth/getme",
           {
             token,
           },
