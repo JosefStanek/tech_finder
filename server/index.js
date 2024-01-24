@@ -6,6 +6,7 @@ import authRoute from "./Routes/authRoutes.js";
 import listRoute from "./Routes/listRoutes.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+
 dotenv.config();
 const app = express();
 const port = process.env.EXPRESS_PORT;
@@ -13,7 +14,7 @@ const mongoUri = process.env.MONGO_URI;
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://mern-tech-finder-frontend.onrender.com"],
+    origin: ["http://localhost:5173"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type"],
     credentials: true,

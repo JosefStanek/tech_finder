@@ -14,8 +14,25 @@ import {
 import { Link } from "react-router-dom";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useParams } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import { deleteCompany } from "../../http/http";
+import { client } from "../../http/http";
+import { useNavigate } from "react-router-dom";
 export const Item = ({ data }) => {
   const companyId = useParams().companyId;
+  const navigate = useNavigate();
+  const { mutate } = useMutation({
+    mutationFn: () => {
+      deleteCompany(companyId);
+    },
+    onSuccess: () => {
+      client.refetchQueries({ queryKey: ["companies"] });
+      navigate("/");
+    },
+    onError: (err) => {
+      console.log("error");
+    },
+  });
 
   return (
     <Card sx={{ p: 2, maxWidth: 500, marginX: "auto" }} elevation={5}>
@@ -35,7 +52,7 @@ export const Item = ({ data }) => {
         <Box display={"flex"} justifyContent={"center"}>
           {data.image.filename && (
             <img
-              src={`https://mern-tech-finder-backend.onrender.com/${data.image.filename}`}
+              src={`http://localhost:3000/${data.image.filename}`}
               alt="company image"
               style={{
                 mawWidth: "100%",
@@ -90,7 +107,7 @@ export const Item = ({ data }) => {
           >
             upravit
           </Button>
-          <Button variant="contained" color="error">
+          <Button variant="contained" color="error" onClick={() => mutate()}>
             smazat
           </Button>
         </CardActions>

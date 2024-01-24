@@ -1,7 +1,11 @@
 import express from "express";
 import { Company } from "../Schemas/companyModel.js";
-import { postCompany } from "../Controllers/companyController.js";
+import {
+  postCompany,
+  deleteCompany,
+} from "../Controllers/companyController.js";
 import upload from "../Multer/multer.js";
+
 const router = express.Router();
 
 router.post("/", upload.single("image"), postCompany);
@@ -108,27 +112,6 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
-  try {
-    const id = req.body.id;
-    const company = await Company.findOneAndDelete(id);
-
-    if (!company) {
-      return res.status(404).json({
-        status: "fail",
-        message: "Společnost nebyla nalezena",
-      });
-    }
-    return res.status(200).json({
-      status: "success",
-      message: "Smazání problěhlo úspěšně",
-    });
-  } catch (error) {
-    return res.status(500).json({
-      status: "fail",
-      message: error.message,
-    });
-  }
-});
+router.delete("/:id", deleteCompany);
 
 export default router;

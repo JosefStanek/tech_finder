@@ -30,7 +30,7 @@ export default function AuthForm() {
     const { email, password } = data;
     try {
       const res = await axios.post(
-        "https://mern-tech-finder-backend.onrender.com/auth/login",
+        "http://localhost:3000/auth/login",
         {
           email,
           password,
@@ -43,6 +43,8 @@ export default function AuthForm() {
       if (!res.data) {
         throw Error("Uživatel nebyl nalezen ");
       }
+
+      localStorage.setItem("token", res.data.token);
 
       dispatch(login(res.data.useremail));
       toast.success("Přihlášení bylo úspešné");

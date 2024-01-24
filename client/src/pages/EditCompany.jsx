@@ -2,7 +2,6 @@ import { Container, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { getCompany } from "../http/http";
-import { Test } from "../components/companyItem/Test";
 import Form from "../shared/form/Form";
 export default function EditCompany() {
   const companyId = useParams().id;
@@ -21,7 +20,6 @@ export default function EditCompany() {
       >
         Upravit společnost
       </Typography>
-      <Test data={data} />
       {/* <Form /> */}
     </Container>
   );

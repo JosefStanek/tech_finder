@@ -36,7 +36,6 @@ const App = () => {
           {/* Protect routes */}
           <Route element={<ProtectRoutes />}>
             <Route path="/" element={<Navigate to="/companies" />}></Route>
-
             <Route path="/companies" element={<Companies />}></Route>
             <Route path="/companies/type/:id" element={<CompanyType />}></Route>
             <Route
