@@ -15,12 +15,16 @@ export default function ProtectRoutes() {
     queryKey: ["user"],
     queryFn: async () => {
       try {
-        // const token = Cookies.get("jwt");
-        const token = localStorage.getItem("token");
-        console.log("token", token);
-        const res = await axios.post("http://localhost:3000/auth/getme", {
-          token,
-        });
+        const token = Cookies.get("jwt");
+        const res = await axios.post(
+          "https://mern-tech-finder-backend.onrender.com/auth/getme",
+          {
+            token,
+          },
+          {
+            withCredentials: true,
+          }
+        );
         if (!res) {
           throw Error("uživatel nebyl nalezen");
         }

@@ -17,17 +17,11 @@ export const registerController = async (req, res, next) => {
     const { email, password } = req.body;
     const user = await User.create({ email, password });
     const token = createToken(user._id);
-    return res
-      .status(201)
-      .cookie("jwt", token, {
-        withCrdentials: true,
-        httpOnly: false,
-        maxAge: maxAge * 1000,
-      })
-      .json({
-        user: user._id,
-        created: true,
-      });
+    return res.status(201).json({
+      token: token,
+      user: user._id,
+      created: true,
+    });
   } catch (error) {
     return res.status(500).json({
       status: "error",
@@ -43,12 +37,18 @@ export const loginController = async (req, res, next) => {
 
     const user = await User.login(email, password);
     const token = createToken(user._id);
-    return res.status(201).json({
-      token: token,
-      user: user._id,
-      useremail: user.email,
-      created: true,
-    });
+    return res
+      .status(201)
+      .cookie("jwt", token, {
+        withCrdentials: true,
+        httpOnly: false,
+        maxAge: maxAge * 1000,
+      })
+      .json({
+        user: user._id,
+        useremail: user.email,
+        created: true,
+      });
   } catch (error) {
     return res.status(500).json({
       status: "error",

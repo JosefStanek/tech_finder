@@ -44,8 +44,6 @@ export default function AuthForm() {
         throw Error("Uživatel nebyl nalezen ");
       }
 
-      localStorage.setItem("token", res.data.token);
-
       dispatch(login(res.data.useremail));
       toast.success("Přihlášení bylo úspešné");
       navigate("/companies");
